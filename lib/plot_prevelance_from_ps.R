@@ -45,7 +45,7 @@ get_ntax <- function(ps,x,df){
       df[x,'0'] = 0 
       next
     }
-    taxa_count = (ntaxa(filter_taxa(ps, function(x) sum(x > 0) > (i*length(x)), TRUE)))
+    taxa_count = (ntaxa(filter_taxa(ps, function(z) sum(z > 0) > (i*length(z)), TRUE)))
     n = as.character(round(1-i, digits=2))
     #i = as.character(i)
     print(c(x,n,taxa_count))
@@ -71,7 +71,7 @@ df = get_ntax(UC,'UC',df)
 df <- within(df, rm('0'))
 
 # melt
-df.melt <- melt(as.matrix(df))
+df.melt <- reshape2::melt(as.matrix(df))
 
 df.melt$Var1 <- factor(df.melt$Var1)
 
